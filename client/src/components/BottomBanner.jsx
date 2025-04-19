@@ -1,5 +1,5 @@
 import React from 'react'
-import BottomBannerLarge from '../assets/bottomBannerLarge.jpg'
+import BottomBannerLarge from '../assets/bottomBannerLarge.png'
 import BottomBannerSmall from '../assets/bottomBannerSmall.png'
 import { features } from '../assets/assets.js'
 

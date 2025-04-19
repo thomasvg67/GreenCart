@@ -1,13 +1,14 @@
 import { useAppContext } from "../../context/AppContext";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Navigate, NavLink, Outlet } from "react-router-dom";
 import AddIcon from '../../assets/shopping-bag.png'
 import ListIcon from '../../assets/list.png'
 import OrderIcon from '../../assets/package.png'
-import Logo from '../../assets/logo.jpg'
+import Logo from '../../assets/logo.png'
+import toast from "react-hot-toast";
 
 const SellerLayout = () => {
 
-    const {setIsSeller} = useAppContext()
+    const { axios, navigate} = useAppContext()
 
     
 
@@ -18,7 +19,17 @@ const SellerLayout = () => {
     ];
 
     const logout = async ()=>{
-        setIsSeller(false)
+        try{
+            const {data} = await axios.get('/api/seller/logout');
+            if(data.success){
+                toast.success(data.message)
+                navigate('/')
+            }else{
+                toast.error(data.message)
+            }
+        }catch(error){
+            toast.error(error.message)
+        }
     }
 
     return (
